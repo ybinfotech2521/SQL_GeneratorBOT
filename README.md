@@ -1,3 +1,5 @@
+database link : https://www.kaggle.com/datasets/carrie1/ecommerce-data
+
 1. Clone & Navigate
 powershell
 git clone https://github.com/ybinfotech2521/SQL_GeneratorBOT.git
