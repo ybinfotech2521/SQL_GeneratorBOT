@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Ask E-Commerce AI</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    textarea {
+        width: 100%;
+        height: 120px;
+        padding: 12px;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+        font-size: 16px;
+        resize: none;
+    }
+
+    button {
+        margin-top: 10px;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        background: #007bff;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .response-box {
+        margin-top: 20px;
+        padding: 12px;
+        background: #eef3ff;
+        border-left: 4px solid #0056b3;
+        border-radius: 4px;
+        display: none;
+    }
+
+    .label {
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>E-Commerce AI Assistant</h2>
+
+    <label class="label">Ask your question:</label>
+    <textarea id="userQuery" placeholder="Example: What was the total revenue last month?"></textarea>
+
+    <button onclick="askQuery()">Ask</button>
+
+    <div id="responseBox" class="response-box">
+        <div class="label">Answer:</div>
+        <div id="responseText"></div>
+    </div>
+</div>
+
+<script>
+async function askQuery() {
+    const userQuery = document.getElementById("userQuery").value.trim();
+    if (!userQuery) {
+        alert("Please enter a question.");
+        return;
+    }
+
+    document.getElementById("responseBox").style.display = "block";
+    document.getElementById("responseText").innerHTML = "Thinking...";
+
+    // Call your backend API
+    try {
+        const res = await fetch("http://127.0.0.1:8000/api/query", {  // <-- backend URL
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userQuery: userQuery,
+                includeSchema: true,
+                maxRows: 1000
+            })
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        if (data.answer) {
+            document.getElementById("responseText").innerText = data.answer;
+        } else {
+            document.getElementById("responseText").innerText = "No answer received.";
+        }
+
+    } catch (error) {
+        document.getElementById("responseText").innerText = "Error: " + error;
+        console.error(error);
+    }
+}
+</script>
+
+</body>
+</html>

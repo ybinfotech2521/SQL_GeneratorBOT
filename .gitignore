@@ -1,0 +1,29 @@
+# ENVIRONMENT & SECRETS (CRITICAL - NEVER COMMIT)
+.env
+.env.local
+.secrets
+keys.json
+
+# VIRTUAL ENVIRONMENT
+venv/
+env/
+
+# PYTHON CACHE
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# DATABASE FILES & LARGE DATA
+*.db
+*.sqlite
+
+# IDE FILES
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS FILES
+.DS_Store
+Thumbs.db
