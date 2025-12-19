@@ -13,8 +13,6 @@ python -m venv venv
 # Activate it
 venv\Scripts\Activate.ps1
 
-# If you get execution policy error, run:
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # Then activate again
 3. Install Dependencies
 powershell
@@ -30,9 +28,14 @@ PostgreSQL credentials
 Groq API key from console.groq.com
 
 5. Run the Backend Server
-powershell
-# Start FastAPI server
-uvicorn app.main:app --reload --port 8000
+ in powershell
+cd "E:\ecom-llm-analytics\backend"
+
+# activate the venv (use .bat if .ps1 blocked)
+E:\ecom-llm-analytics\venv\Scripts\activate.ps1
+
+# start uvicorn (run in foreground so you can see logs)
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 # You'll see:
 # INFO:     Uvicorn running on http://127.0.0.1:8000
