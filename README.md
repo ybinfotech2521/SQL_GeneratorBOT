@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 
-=======
+======
 database link : https://www.kaggle.com/datasets/carrie1/ecommerce-data
 
 
@@ -49,7 +48,7 @@ Step 6: Open Frontend
 Open frontend/index.html in your browser.
 
 ask the question and for the query see the powershell logs 
-<<<<<<< HEAD
+
 ---------------------------------------------------------------------------------------
 
 <!-- in powershell 
